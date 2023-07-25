@@ -5,20 +5,24 @@ class CustomTextField extends StatelessWidget {
     super.key,
     required this.controller,
     required this.hintText,
-    required this.labelText,
+    this.labelText = '',
     this.maxLines = 1,
+    this.keyboardType = TextInputType.text,
   });
   final TextEditingController controller;
   final String hintText;
   final int maxLines;
   final String labelText;
+  final TextInputType keyboardType;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
+      keyboardType: keyboardType,
       decoration: InputDecoration(
         labelText: labelText,
+        alignLabelWithHint: true,
         hintText: hintText,
         border: const OutlineInputBorder(
           borderSide: BorderSide(color: Colors.black),

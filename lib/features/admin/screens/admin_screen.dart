@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:badges/badges.dart' as badges;
-import 'package:fyp/features/account/screens/account_screen.dart';
-import 'package:fyp/features/home/screens/home_screens.dart';
+import 'package:fyp/features/admin/screens/posts_screen.dart';
 
-class BottomBar extends StatefulWidget {
-  static const String routeName = '/actual-home';
-  const BottomBar({super.key});
+class AdminScreen extends StatefulWidget {
+  const AdminScreen({super.key});
 
   @override
-  State<BottomBar> createState() => _BottomBarState();
+  State<AdminScreen> createState() => _AdminScreenState();
 }
 
-class _BottomBarState extends State<BottomBar> {
+class _AdminScreenState extends State<AdminScreen> {
   int _page = 0;
   double bottomBarWidth = 42;
   double bottomBarBorderWidth = 5;
@@ -23,15 +20,18 @@ class _BottomBarState extends State<BottomBar> {
   }
 
   List<Widget> pages = [
-    const HomeScreen(),
-    const Center(
-      child: Text('hs'),
+    const PostsScreen(),
+    Center(
+      child: Text('ss'),
     ),
-    const AccountsScreen(),
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.green,
+        title: Text('In-house'),
+      ),
       body: pages[_page],
       bottomNavigationBar: BottomNavigationBar(
         onTap: updatePage,
@@ -46,24 +46,11 @@ class _BottomBarState extends State<BottomBar> {
             ),
           ),
           BottomNavigationBarItem(
-            label: 'Notification',
-            icon: SizedBox(
-              width: bottomBarWidth,
-              child: const badges.Badge(
-                badgeContent: Text('1'),
-                badgeStyle: badges.BadgeStyle(badgeColor: Colors.white),
-                child: Icon(
-                  Icons.plumbing_outlined,
-                ),
-              ),
-            ),
-          ),
-          BottomNavigationBarItem(
-            label: 'Profile',
+            label: 'Order',
             icon: SizedBox(
               width: bottomBarWidth,
               child: const Icon(
-                Icons.person,
+                Icons.all_inbox_outlined,
               ),
             ),
           ),

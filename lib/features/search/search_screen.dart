@@ -1,29 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:fyp/common/loader.dart';
+import 'package:fyp/common/star.dart';
+import 'package:fyp/features/search/services/search_services.dart';
+import 'package:fyp/features/worker_details/screens/worker_details_screen.dart';
+import 'package:fyp/models/worker.dart';
 
-import 'package:fyp/features/home/screens/category_screen.dart';
+class SearchScreen extends StatefulWidget {
+  static const String routeName = '/search-screen';
+  final String searchQuery;
 
-import 'package:fyp/features/search/search_screen.dart';
-
-class HomeScreen extends StatefulWidget {
-  static const String routeName = '/home';
-  const HomeScreen({super.key});
+  const SearchScreen({
+    super.key,
+    required this.searchQuery,
+  });
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<SearchScreen> createState() => _SearchScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-  void navigateToCategoryPage(String category) {
-    Navigator.pushNamed(context, CategoryScreen.routeName, arguments: category);
-  }
+class _SearchScreenState extends State<SearchScreen> {
+  List<Worker>? workers;
 
-  void navigateToSearchScreen(String query) {
+  final SearchServices searchServices = SearchServices();
+
+  navigateToSearchScreen(String query) {
     Navigator.pushNamed(context, SearchScreen.routeName, arguments: query);
   }
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    fetchSearchedWorker();
+  }
+
+  fetchSearchedWorker() async {
+    workers = await searchServices.fetchSearchedProduct(
+      context: context,
+      searchQuery: widget.searchQuery,
+    );
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
-    // final user = Provider.of<UserProvider>(context).user;
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
@@ -91,24 +111,50 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            // AddressBox(
-            //   navigateToAddress: () {
-            //     Navigator.pushNamed(context, AddressScreen.routeName);
-            //   },
-            // ),
-            InkWell(
-              onTap: () {
-                navigateToCategoryPage('Plumber');
-              },
-              child: Text('plumbers'),
-            )
-          ],
-        ),
-      ),
+      body: workers == null
+          ? const Loader()
+          : Column(
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: workers!.length,
+                    itemBuilder: (context, index) {
+                      double avgRating = 0;
+                      double totalRating = 0;
+                      for (int i = 0; i < workers![index].rating!.length; i++) {
+                        totalRating += workers![index].rating![i].rating;
+                      }
+                      if (totalRating != 0) {
+                        avgRating =
+                            totalRating / workers![index].rating!.length;
+                      }
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, WorkerDetailsScreen.routeName,
+                              arguments: workers![index]);
+                        },
+                        child: Container(
+                          width: double.infinity,
+                          height: 150,
+                          color: Colors.grey,
+                          child: Column(
+                            children: [
+                              Text(
+                                workers![index].name,
+                              ),
+                              Stars(
+                                rating: avgRating,
+                              )
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
     );
   }
 }

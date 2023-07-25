@@ -5,6 +5,9 @@ const mongoose = require('mongoose');
 
 //imports from other files
 const authRouter = require('./routes/auth');
+const adminRouter = require('./routes/admin');
+const workerRouter = require('./routes/worker');
+const userRouter = require("./routes/user");
 
 
 //INIT
@@ -16,6 +19,12 @@ const DB = "mongodb+srv://merohandler44:Andrew@cluster0.8stekqv.mongodb.net/?ret
 app.use(express.json());
 
 app.use(authRouter);
+
+app.use(adminRouter);
+
+app.use(workerRouter);
+
+app.use(userRouter);
 
 
 
@@ -35,3 +44,4 @@ mongoose.connect(DB).then(() => {
 app.listen(PORT, "0.0.0.0", () => {
     console.log(`connected at the port ${PORT}`);
 });
+

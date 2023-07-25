@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { workerSchema } = require('./worker');
 
 
 const userSchema = mongoose.Schema({
@@ -38,6 +39,16 @@ const userSchema = mongoose.Schema({
         type: String,
         default: "user",
     },
+    // cart: [
+    //     {
+    //         Worker: workerSchema
+    //         quantity:{
+    //             type: Number,
+    //             default: 1,
+    //         }
+    //     }
+    // ],
+
 
 });
 

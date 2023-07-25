@@ -1,5 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -72,6 +70,7 @@ class AuthService {
         },
       );
 
+      print(res.body);
       httpErrorHandle(
         response: res,
         context: context,
@@ -79,21 +78,27 @@ class AuthService {
           SharedPreferences prefs = await SharedPreferences.getInstance();
           Provider.of<UserProvider>(context, listen: false).setUser(res.body);
           await prefs.setString('x-auth-token', jsonDecode(res.body)['token']);
+          print('ssss');
           Navigator.pushNamedAndRemoveUntil(
-              context, BottomBar.routeName, (route) => false);
+            context,
+            BottomBar.routeName,
+            (route) => false,
+          );
         },
       );
     } catch (e) {
+      print(e);
       showSnackBar(context, e.toString());
     }
   }
 
-  void getUserData({
-    required BuildContext context,
-  }) async {
+  void getUserData(
+    BuildContext context,
+  ) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String? token = prefs.getString('x-auth-token');
+
       if (token == null) {
         prefs.setString('x-auth-token', '');
       }
@@ -121,6 +126,7 @@ class AuthService {
         userProvider.setUser(userRes.body);
       }
     } catch (e) {
+      print(e);
       showSnackBar(context, e.toString());
     }
   }
