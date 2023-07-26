@@ -113,47 +113,119 @@ class _SearchScreenState extends State<SearchScreen> {
       ),
       body: workers == null
           ? const Loader()
-          : Column(
-              children: [
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: workers!.length,
-                    itemBuilder: (context, index) {
-                      double avgRating = 0;
-                      double totalRating = 0;
-                      for (int i = 0; i < workers![index].rating!.length; i++) {
-                        totalRating += workers![index].rating![i].rating;
-                      }
-                      if (totalRating != 0) {
-                        avgRating =
-                            totalRating / workers![index].rating!.length;
-                      }
-                      return GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(
-                              context, WorkerDetailsScreen.routeName,
-                              arguments: workers![index]);
-                        },
-                        child: Container(
-                          width: double.infinity,
-                          height: 150,
-                          color: Colors.grey,
-                          child: Column(
-                            children: [
-                              Text(
-                                workers![index].name,
+          : Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: workers!.length,
+                      itemBuilder: (context, index) {
+                        double avgRating = 0;
+                        double totalRating = 0;
+                        for (int i = 0;
+                            i < workers![index].rating!.length;
+                            i++) {
+                          totalRating += workers![index].rating![i].rating;
+                        }
+                        if (totalRating != 0) {
+                          avgRating =
+                              totalRating / workers![index].rating!.length;
+                        }
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, WorkerDetailsScreen.routeName,
+                                arguments: workers![index]);
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.only(bottom: 20),
+                            height: 130,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: Colors.green,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(12.0),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    alignment: Alignment.center,
+                                    height: double.infinity,
+                                    width: 120,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(
+                                        8,
+                                      ),
+                                      image: DecorationImage(
+                                          image: NetworkImage(
+                                            workers![index].profilePicture,
+                                          ),
+                                          fit: BoxFit.cover),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 20,
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        workers![index].name.toUpperCase(),
+                                        style: const TextStyle(
+                                            fontSize: 24,
+                                            fontWeight: FontWeight.w700),
+                                      ),
+                                      Text(
+                                        workers![index].description,
+                                        style: const TextStyle(
+                                            overflow: TextOverflow.ellipsis,
+                                            fontSize: 19),
+                                      ),
+                                      Stars(rating: avgRating),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Container(
+                                            height: 30,
+                                            width: 90,
+                                            decoration: BoxDecoration(
+                                              color: Colors.green.shade900,
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                            ),
+                                            child: const Center(
+                                              child: Text(
+                                                "View",
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            width: 13,
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
-                              Stars(
-                                rating: avgRating,
-                              )
-                            ],
+                            ),
                           ),
-                        ),
-                      );
-                    },
+                        );
+                      },
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
     );
   }

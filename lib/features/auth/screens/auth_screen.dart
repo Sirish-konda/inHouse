@@ -125,7 +125,7 @@ class _AuthScreenState extends State<AuthScreen> {
               ),
             ListTile(
               tileColor: _auth == Auth.signin ? Colors.green : Colors.grey,
-              title: const Text('Sigh in'),
+              title: const Text('Sign in'),
               leading: Radio(
                 activeColor: Colors.yellow,
                 value: Auth.signin,

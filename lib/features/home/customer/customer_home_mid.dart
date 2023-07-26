@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:fyp/providers/user_provider.dart';
+import 'package:provider/provider.dart';
 
 class CustomerHomeMid extends StatelessWidget {
   const CustomerHomeMid({super.key});
 
   @override
   Widget build(BuildContext context) {
+    String user = Provider.of<UserProvider>(context).user.name;
     return Padding(
       padding: const EdgeInsets.only(left: 14),
       child: Column(
@@ -31,9 +34,9 @@ class CustomerHomeMid extends StatelessWidget {
           ),
 
           //adding name of the plumber
-          const Text(
-            'Andrew Suwal',
-            style: TextStyle(
+          Text(
+            user.toUpperCase(),
+            style: const TextStyle(
               color: Colors.green,
               fontFamily: 'poppins',
               fontSize: 30,
@@ -43,7 +46,7 @@ class CustomerHomeMid extends StatelessWidget {
             height: 10,
           ),
           const Text(
-            "We're thrilled to have you join the Andrew community! Your reliable and efficient solution for all your plumbing needs is now just a tap away. Get ready to experience hassle-free plumbing services and say goodbye to leaks and clogs!",
+            "We're thrilled to have you join the community! Your reliable and efficient solution for all your plumbing needs is now just a tap away. Get ready to experience hassle-free plumbing services and say goodbye to leaks and clogs!",
             style: TextStyle(
               fontFamily: 'poppins',
             ),

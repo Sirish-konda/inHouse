@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:fyp/features/home/customer/customer_home_bottom.dart';
+import 'package:fyp/features/home/customer/customer_home_mid.dart';
+import 'package:fyp/features/home/customer/customer_home_top.dart';
+import 'package:fyp/features/home/customer/customer_services.dart';
 
 import 'package:fyp/features/home/screens/category_screen.dart';
 
@@ -92,30 +96,26 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child:
-              // child: Expanded(
-              //   child: ListView(
-              //     children: [
-              // AddressBox(
-              //   navigateToAddress: () {
-              //     Navigator.pushNamed(context, AddressScreen.routeName);
-              //   },
-              // ),
-              // PlumberHomeTop(),
-              // PlumberHomeMid(),
-              // CustomerHomeBottom(),
-
-              InkWell(
-            onTap: () {
-              navigateToCategoryPage('Plumber');
-            },
-            child: Text('asdasdas'),
-          )
-          //     ],
-          //   ),
-          // ),
+        padding: const EdgeInsets.all(16.0),
+        child: Expanded(
+          child: ListView(
+            children: [
+              const CustomerHomeTop(),
+              const CustomerHomeMid(),
+              const CustomerHomeBottom(),
+              CustomerSerivces(
+                ontap: () {
+                  navigateToCategoryPage('Plumber');
+                },
+                title: 'Plumbing',
+                desc: 'We can solve it',
+                price: 300,
+                iconValue: Icons.water_damage_outlined,
+              ),
+            ],
           ),
+        ),
+      ),
     );
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:fyp/common/custom_button.dart';
 import 'package:fyp/common/star.dart';
 import 'package:fyp/features/address/screens/address_screen.dart';
+
 import 'package:fyp/features/worker_details/services/worker_detail_services.dart';
 import 'package:fyp/models/worker.dart';
 import 'package:fyp/providers/user_provider.dart';
@@ -47,7 +48,8 @@ class _WorkerDetailsState extends State<WorkerDetailsScreen> {
     return Scaffold(
       backgroundColor: Colors.amber.shade50,
       appBar: AppBar(
-        title: Text('ss'),
+        title: const Text('Plumber'),
+        backgroundColor: Colors.green,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -70,7 +72,14 @@ class _WorkerDetailsState extends State<WorkerDetailsScreen> {
                 vertical: 20,
                 horizontal: 10,
               ),
-              child: Text(widget.worker.name.toUpperCase()),
+              child: Text(
+                widget.worker.name.toUpperCase(),
+                style: const TextStyle(
+                  color: Colors.green,
+                  fontFamily: 'poppins',
+                  fontSize: 30,
+                ),
+              ),
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -108,17 +117,30 @@ class _WorkerDetailsState extends State<WorkerDetailsScreen> {
                 ),
                 Container(
                   height: 200,
+                  alignment: Alignment.topLeft,
                   margin: const EdgeInsets.all(8),
                   padding: const EdgeInsets.all(20),
                   width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Colors.grey.shade50,
-                  ),
-                  child: Text(
-                    widget.worker.description,
-                    style: const TextStyle(
-                      fontSize: 19,
-                    ),
+                  decoration: const BoxDecoration(
+                      // color: Colors.grey.shade50,
+                      ),
+                  child: Column(
+                    children: [
+                      const Text(
+                        'Description',
+                        style: TextStyle(
+                          color: Colors.green,
+                          fontFamily: 'poppins',
+                          fontSize: 30,
+                        ),
+                      ),
+                      Text(
+                        widget.worker.description,
+                        style: const TextStyle(
+                          fontFamily: 'poppins',
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 Padding(

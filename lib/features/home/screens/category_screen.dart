@@ -36,6 +36,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Plumber'),
+        backgroundColor: Colors.green,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8),
@@ -51,8 +52,83 @@ class _CategoryScreenState extends State<CategoryScreen> {
                           context, WorkerDetailsScreen.routeName,
                           arguments: worker);
                     },
-                    child: ListTile(
-                      title: Text(worker.name),
+                    child: Container(
+                      margin: const EdgeInsets.only(bottom: 20),
+                      height: 130,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: Colors.green,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Row(
+                          children: [
+                            Container(
+                              alignment: Alignment.center,
+                              height: double.infinity,
+                              width: 120,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(
+                                  8,
+                                ),
+                                image: DecorationImage(
+                                    image: NetworkImage(
+                                      worker.profilePicture,
+                                    ),
+                                    fit: BoxFit.cover),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  worker.name.toUpperCase(),
+                                  style: const TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.w700),
+                                ),
+                                Text(
+                                  worker.description,
+                                  style: const TextStyle(
+                                      overflow: TextOverflow.ellipsis,
+                                      fontSize: 19),
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      height: 30,
+                                      width: 90,
+                                      decoration: BoxDecoration(
+                                        color: Colors.green.shade900,
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      child: const Center(
+                                        child: Text(
+                                          "View",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 13,
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   );
                 }),

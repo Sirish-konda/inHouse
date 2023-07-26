@@ -27,7 +27,6 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
 
   //only for admin
   void changeOrderStatus(int status) async {
-    print(status);
     adminServices.changeOrderStatus(
       context: context,
       status: statusHold(status),
@@ -100,7 +99,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
               ),
               const SizedBox(height: 10),
               const Text(
-                'Order Details',
+                'Order will arrive in 1-2 days',
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
@@ -115,21 +114,15 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    // for (int i = 0; i < widget.order.products.length; i++)
                     Row(
                       children: [
-                        // Image.network(
-                        //   widget.order.products[i].images[0],
-                        //   height: 120,
-                        //   width: 120,
-                        // ),
                         const SizedBox(width: 5),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                widget.order.name,
+                                widget.order.name.toUpperCase(),
                                 style: const TextStyle(
                                   fontSize: 17,
                                   fontWeight: FontWeight.bold,
@@ -137,7 +130,6 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                               ),
-                              Text(''),
                             ],
                           ),
                         ),
