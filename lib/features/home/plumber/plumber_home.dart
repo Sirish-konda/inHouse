@@ -30,6 +30,5 @@ class PlumberHome extends StatelessWidget {
         ],
       ),
     );
-    ;
   }
 }

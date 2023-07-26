@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fyp/features/home/customer/customer_home_bottom.dart';
-import 'package:fyp/features/home/plumber/plumber_home_bottom.dart';
-import 'package:fyp/features/home/plumber/plumber_home_mid.dart';
-import 'package:fyp/features/home/plumber/plumber_home_top.dart';
 
 import 'package:fyp/features/home/screens/category_screen.dart';
 

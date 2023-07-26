@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fyp/features/home/customer/customer_services.dart';
 
 class CustomerHomeBottom extends StatelessWidget {
   const CustomerHomeBottom({super.key});
@@ -49,7 +48,6 @@ class CustomerHomeBottom extends StatelessWidget {
           SizedBox(
             height: 25,
           ),
-        
         ],
       ),
     );
