@@ -58,8 +58,6 @@ class AddressServices {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
 
     try {
-      print('object');
-      print(worker.id);
       http.Response res = await http.post(
         Uri.parse('$uri/api/order'),
         headers: {
@@ -70,7 +68,9 @@ class AddressServices {
           {
             'address': address,
             'totalPrice': totalSum,
-            'workerD': worker,
+            'name': worker.name,
+            'description': worker.description,
+            'fee': worker.fee,
           },
         ),
       );

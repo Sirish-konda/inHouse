@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fyp/features/account/services/account_services.dart';
+import 'package:fyp/features/admin/screens/orders_screen.dart';
 import 'package:fyp/features/admin/screens/posts_screen.dart';
 
 class AdminScreen extends StatefulWidget {
@@ -9,6 +11,8 @@ class AdminScreen extends StatefulWidget {
 }
 
 class _AdminScreenState extends State<AdminScreen> {
+  final AccountServices accountServices = AccountServices();
+
   int _page = 0;
   double bottomBarWidth = 42;
   double bottomBarBorderWidth = 5;
@@ -19,18 +23,27 @@ class _AdminScreenState extends State<AdminScreen> {
     });
   }
 
+  void logOut() {
+    accountServices.logOut(context);
+  }
+
   List<Widget> pages = [
     const PostsScreen(),
-    Center(
-      child: Text('ss'),
-    ),
+    const OrdersScreen(),
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green,
-        title: Text('In-house'),
+        title: const Text('In-house'),
+        actions: [
+          IconButton(
+              onPressed: () {
+                logOut();
+              },
+              icon: const Icon(Icons.logout_outlined))
+        ],
       ),
       body: pages[_page],
       bottomNavigationBar: BottomNavigationBar(

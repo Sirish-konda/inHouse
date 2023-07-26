@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:fyp/common/bottom_bar.dart';
-import 'package:fyp/features/address/screens/address_screen.dart';
+
 import 'package:fyp/features/admin/screens/add_worker_screen.dart';
 import 'package:fyp/features/auth/screens/auth_screen.dart';
 import 'package:fyp/features/home/screens/category_screen.dart';
 import 'package:fyp/features/home/screens/home_screens.dart';
+import 'package:fyp/features/orderDetails/screens/order_details_screen.dart';
 import 'package:fyp/features/search/search_screen.dart';
 import 'package:fyp/features/worker_details/screens/worker_details_screen.dart';
+import 'package:fyp/models/order.dart';
 import 'package:fyp/models/worker.dart';
 
 Route<dynamic> generateRoute(RouteSettings routeSettings) {
@@ -61,6 +63,14 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
         ),
       );
 
+    case OrderDetailsScreen.routeName:
+      var order = routeSettings.arguments as Order;
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => OrderDetailsScreen(
+          order: order,
+        ),
+      );
     // case AddressScreen.routeName:
     //   return MaterialPageRoute(
     //     settings: routeSettings,

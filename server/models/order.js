@@ -2,15 +2,20 @@ const mongoose = require("mongoose");
 const { workerSchema } = require("./worker");
 
 const orderSchema = mongoose.Schema({
-    workers: [
-        {
-            product: workerSchema,
-            quantity: {
-                type: Number,
-                required: true,
-            },
-        },
-    ],
+    name: {
+        type: String,
+        required: true,
+    },
+    description: {
+        type: String,
+        required: true,
+    },
+
+    fee: {
+        type: String,
+        required: true,
+    },
+
     totalPrice: {
         type: Number,
         required: true,

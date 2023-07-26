@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:badges/badges.dart' as badges;
 import 'package:fyp/features/account/screens/account_screen.dart';
 import 'package:fyp/features/home/screens/home_screens.dart';
+import 'package:fyp/features/order/screens/order_screen.dart';
+import 'package:fyp/features/order/services/order_services.dart';
+import 'package:fyp/models/order.dart';
 
 class BottomBar extends StatefulWidget {
   static const String routeName = '/actual-home';
@@ -12,6 +14,21 @@ class BottomBar extends StatefulWidget {
 }
 
 class _BottomBarState extends State<BottomBar> {
+  List<Order>? orders;
+  final OrderServices orderServices = OrderServices();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    fetchOrders();
+  }
+
+  void fetchOrders() async {
+    orders = await orderServices.fetchMyOrders(context: context);
+    setState(() {});
+  }
+
   int _page = 0;
   double bottomBarWidth = 42;
   double bottomBarBorderWidth = 5;
@@ -24,9 +41,7 @@ class _BottomBarState extends State<BottomBar> {
 
   List<Widget> pages = [
     const HomeScreen(),
-    const Center(
-      child: Text('hs'),
-    ),
+    const OrderScreen(),
     const AccountsScreen(),
   ];
   @override
@@ -48,15 +63,8 @@ class _BottomBarState extends State<BottomBar> {
           BottomNavigationBarItem(
             label: 'Notification',
             icon: SizedBox(
-              width: bottomBarWidth,
-              child: const badges.Badge(
-                badgeContent: Text('1'),
-                badgeStyle: badges.BadgeStyle(badgeColor: Colors.white),
-                child: Icon(
-                  Icons.plumbing_outlined,
-                ),
-              ),
-            ),
+                width: bottomBarWidth,
+                child: const Icon(Icons.notification_add)),
           ),
           BottomNavigationBarItem(
             label: 'Profile',

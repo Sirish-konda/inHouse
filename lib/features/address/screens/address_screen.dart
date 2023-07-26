@@ -147,7 +147,9 @@ class _AddressScreenState extends State<AddressScreen> {
                     const SizedBox(height: 10),
                     CustomButton(
                       text: 'Pay',
-                      onTap: () => payPressed(address),
+                      onTap: () {
+                        payPressed(address);
+                      },
                     )
                   ],
                 ),
