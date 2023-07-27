@@ -14,6 +14,27 @@ class AccountsScreen extends StatelessWidget {
       accountServices.logOut(context);
     }
 
+    void _showAboutUsDialog(BuildContext context) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('About Us'),
+            content: Text(
+                '''In-House Service" is an innovative plumbing app that aims to revolutionize home maintenance. With a user-friendly interface, real-time tracking, and secure payments, we provide hassle-free plumbing services. We value customer loyalty and offer exclusive discounts. Our vision expands beyond plumbing, aiming to be a holistic home service platform. With qualified service providers and a customer-centric approach, we strive to set new industry standards and redefine home maintenance experiences. Join us to experience effortless and reliable plumbing solutions, making your home a better place.'''),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop(); // Close the dialog
+                },
+                child: Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+    }
+
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.green,
@@ -50,8 +71,10 @@ class AccountsScreen extends StatelessWidget {
               ),
               const SizedBox(height: 30),
               CustomButton(
-                text: 'History',
-                onTap: () {},
+                text: 'About Us',
+                onTap: () {
+                  _showAboutUsDialog(context);
+                },
               ),
               const SizedBox(height: 30),
               CustomButton(

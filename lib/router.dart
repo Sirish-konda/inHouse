@@ -71,11 +71,6 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
           order: order,
         ),
       );
-    // case AddressScreen.routeName:
-    //   return MaterialPageRoute(
-    //     settings: routeSettings,
-    //     builder: (_) => const AddressScreen(),
-    //   );
 
     default:
       return MaterialPageRoute(
