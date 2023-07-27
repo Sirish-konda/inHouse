@@ -79,13 +79,9 @@ class _OrdersScreenState extends State<OrdersScreen> {
                               Text(
                                 orderData.name.toUpperCase(),
                                 style: const TextStyle(
-                                    fontSize: 24, fontWeight: FontWeight.w700),
-                              ),
-                              Text(
-                                orderData.description,
-                                style: const TextStyle(
-                                    overflow: TextOverflow.ellipsis,
-                                    fontSize: 19),
+                                    overflow: TextOverflow.clip,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w700),
                               ),
                               Row(
                                 mainAxisAlignment:

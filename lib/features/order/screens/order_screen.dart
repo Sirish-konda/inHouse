@@ -100,12 +100,6 @@ class _OrderScreenState extends State<OrderScreen> {
                                       fontSize: 24,
                                       fontWeight: FontWeight.w700),
                                 ),
-                                Text(
-                                  orders![index].description,
-                                  style: const TextStyle(
-                                      overflow: TextOverflow.ellipsis,
-                                      fontSize: 19),
-                                ),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,

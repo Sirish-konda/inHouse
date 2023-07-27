@@ -181,12 +181,6 @@ class _SearchScreenState extends State<SearchScreen> {
                                             fontSize: 24,
                                             fontWeight: FontWeight.w700),
                                       ),
-                                      Text(
-                                        workers![index].description,
-                                        style: const TextStyle(
-                                            overflow: TextOverflow.ellipsis,
-                                            fontSize: 19),
-                                      ),
                                       Stars(rating: avgRating),
                                       Row(
                                         mainAxisAlignment:
